@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   pos:
     image: ranimeta/meta:latest
