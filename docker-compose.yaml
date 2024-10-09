@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  pos:
+    image: ranimeta/meta:latest
+    ports:
+      - 3000:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
