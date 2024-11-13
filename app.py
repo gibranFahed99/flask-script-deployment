@@ -43,12 +43,20 @@ def webhook():
     
     if 'push_data' in data and data['push_data']['tag'] == 'licensePos':
             jwt_token = get_portainer_token()
-            STACK_ID = 18
+            STACK_ID = 28
             ENDPOINT_ID = 2
             status_code,response = redeploy_stack(jwt_token)
             if status_code == 200:
                 return 'Stack redeployed successfully', 200
-
+    
+    if 'push_data' in data and data['push_data']['tag'] == 'wasteManagementSaudi':
+        jwt_token = get_portainer_token()
+        STACK_ID = 29
+        ENDPOINT_ID = 2
+        status_code,response = redeploy_stack(jwt_token)
+        if status_code == 200:
+            return 'Stack redeployed successfully', 200
+    
     return 'No action taken', 400
 
 if __name__ == '__main__':  
