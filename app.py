@@ -8,8 +8,6 @@ app = Flask(__name__)
 PORTAINER_URL = os.getenv('PORTAINER_URL')
 PORTAINER_USERNAME = os.getenv('PORTAINER_USERNAME')
 PORTAINER_PASSWORD = os.getenv('PORTAINER_PASSWORD')
-STACK_ID = -1
-ENDPOINT_ID = -1
 
 def get_portainer_token():
     login_url = f"{PORTAINER_URL}/auth"
@@ -33,6 +31,7 @@ def webhook():
 
     if 'push_data' in data and data['push_data']['tag'] == 'latest':
         jwt_token = get_portainer_token()
+        global STACK_ID, ENDPOINT_ID
         STACK_ID = 18
         ENDPOINT_ID = 2
         status_code,response = redeploy_stack(jwt_token)
@@ -43,6 +42,7 @@ def webhook():
     
     if 'push_data' in data and data['push_data']['tag'] == 'licensePos':
             jwt_token = get_portainer_token()
+            global STACK_ID, ENDPOINT_ID
             STACK_ID = 28
             ENDPOINT_ID = 2
             status_code,response = redeploy_stack(jwt_token)
@@ -51,6 +51,7 @@ def webhook():
     
     if 'push_data' in data and data['push_data']['tag'] == 'wasteManagementSaudi':
         jwt_token = get_portainer_token()
+        global STACK_ID, ENDPOINT_ID
         STACK_ID = 29
         ENDPOINT_ID = 2
         status_code,response = redeploy_stack(jwt_token)
