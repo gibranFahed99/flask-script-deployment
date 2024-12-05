@@ -22,6 +22,9 @@ def redeploy_stack(jwt_token,stack_id,endpoint_id):
     response = requests.put(deploy_url,headers=headers,json={
         "pullImage": True
     })
+
+    requests.post(f"{PORTAINER_URL}/endpoints/{endpoint_id}/docker/images/prune",headers=headers,json={})
+
     return response.status_code,response.text
 
 @app.route("/webhook",methods=['post'])
